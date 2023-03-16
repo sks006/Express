@@ -1,0 +1,46 @@
+<%-include('../../partials/head.ejs')  %>
+
+    <div class="container">
+
+        <div class="col-my-6 offset-md-3">
+            <div class="card card-body">
+                <h4 class="my-3">Login</h4>
+                <form action="/auth/login" method="post">
+
+                    <div class="from-group">
+                        <label for="email">
+                        Enter Your Valid Email (REQUIRED)
+                    </label>
+                        <input type="email" name="email" id="email" class="form-control <%= error.email? " is-invalid ":''  %>">
+                        <div class="invalid-feedback">
+                            <%=error.email && error.email %>
+                        </div>
+                    </div>
+
+
+                    <div class="from-group">
+                        <label for="password">
+                        Enter password 
+                    </label>
+                        <input type="password" name="password" id="password" class="form-control<%= error.password? " is-invalid ":''  %>">
+                        <div class="invalid-feedback">
+                            <%=error.password && error.password %>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="login">
+                </form>
+                <a href="/auth/signup" class="my-3 text-center">All Ready Have Acount, LogIn</a>
+            </div>
+        </div>
+
+    </div>
+    <%-include("../../partials/footer.ejs")  %>
+
+
+
+
+
+        </body>
+
+        </html>

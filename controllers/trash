@@ -1,0 +1,38 @@
+exports.loginPostController = async(req, res, next) => {
+    let { email, password } = req.body
+
+    let errors = validationResult(req).formatWith(errorFormatter)
+    if (!errors.isEmpty()) {
+        res.render('pages/auth/login', {
+            title: "Login the acount",
+            error: errors.mapped()
+        })
+    }
+
+    try {
+        let user = await User.findOne({ email })
+        if (!user) {
+            return res.json({
+                massage: "Invalid cridential"
+            })
+        }
+        let match = await bcrypt.compare(password, user.password)
+        if (!match) {
+            return res.json({
+                massage: "Invalid cridential"
+            })
+        }
+
+
+
+        res.setHeader("set-Cookie", "isLoggedIn=true")
+
+        res.render("pages/auth/login", { title: "Login the acount", error: {} })
+    } catch (e) {
+        console.log(e)
+        next(e)
+
+
+    }
+
+}
