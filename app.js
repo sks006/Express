@@ -6,8 +6,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
 const config = require("config")
-const chalk =
-    import ("chalk")
+const chalk = require('chalk');
 
 
 
@@ -70,7 +69,7 @@ mongoose.set("strictQuery", false);
 mongoose
     .connect(mondoDB_URI)
     .then(() => {
-        console.log("database connected ");
+        console.log(chalk.green("database connected "));
         app.listen(PORT, () => {
             console.log(`Server is running on ${PORT}`);
         });

@@ -18,13 +18,13 @@ exports.binduserWithMiddleware = () => {
 
 
 exports.isAuthenticate = (req, res, next) => {
-    if (!req.session.isloggedIn) {
+    if (!req.session.loggedIn) {
         res.redirect("/auth/login")
     }
     next()
 }
 exports.isUnAuthenticate = (req, res, next) => {
-    if (req.session.isloggedIn) {
+    if (req.session.loggedIn) {
         return res.redirect("/dashboard")
     }
     next()
