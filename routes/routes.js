@@ -25,7 +25,6 @@ module.exports = app => {
 
 
 
-
 // const authRouter = require("./authRouter")
 // const dashboardRouter = require("./dashboardRouter")
 
@@ -114,4 +113,5 @@ module.exports = app => {
 //             app.delete(path, handler);
 //         }
 //     });
+// };  });
 // };

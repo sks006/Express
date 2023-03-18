@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt")
 const User = require("../Models/User")
 const { validationResult } = require("express-validator")
 const errorFormatter = require("../utils/validationErrorFormatter")
-const Flash = require("../utils/flash").default
+const flash = require("../utils/flash")
 
 
 
@@ -27,6 +27,7 @@ exports.signupPostController = async(req, res, next) => {
 
     let error = validationResult(req).formatWith(errorFormatter)
 
+    req.flash("faild", "please check your from")
     if (!error.isEmpty()) {
         req.flash("fail", "please chack your from")
         res.render('pages/auth/signup', {
@@ -135,6 +136,7 @@ exports.logOutController = (req, res, next) => {
             console.log(err)
             return next()
         }
+        req.flash("success", "Succsessfully logout")
         return res.redirect("/auth/login")
 
     })
